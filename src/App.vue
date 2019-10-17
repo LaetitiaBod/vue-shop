@@ -2,35 +2,45 @@
   <v-app>
     <v-app-bar app>
       <v-toolbar-title class="headline text-uppercase">
-        <span>Vuetify</span>
-        <span class="font-weight-light">MATERIAL DESIGN</span>
+        <v-btn text icon color="red" @click="gotohome">
+          <v-icon>mdi-home</v-icon>
+        </v-btn>
+        <span>e-shop</span>
+        <span class="font-weight-light">vue project</span>
       </v-toolbar-title>
       <v-spacer></v-spacer>
-      <v-btn
-        text
-        href="https://github.com/vuetifyjs/vuetify/releases/latest"
-        target="_blank"
-      >
-        <span class="mr-2">Latest Release</span>
+      <v-btn text @click="gotobag">
+        <span class="mr-2">Bag</span>
+      </v-btn>
+      <v-btn text @click="gotologin">
+        <span class="mr-2">Login</span>
       </v-btn>
     </v-app-bar>
 
     <v-content>
-      <HelloWorld/>
+      <router-view></router-view>
     </v-content>
   </v-app>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld'
 
 export default {
   name: 'App',
   components: {
-    HelloWorld
   },
   data: () => ({
-    //
-  })
+  }),
+  methods: {
+    async gotohome () {
+      this.$router.push('/Home').catch(err => { console.error('something went wrong', err) })
+    },
+    async gotologin () {
+      this.$router.push('/Login').catch(err => { console.error('something went wrong', err) })
+    },
+    async gotobag () {
+      this.$router.push('/Bag').catch(err => { console.error('something went wrong', err) })
+    }
+  }
 }
 </script>
