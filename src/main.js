@@ -15,10 +15,10 @@ Vue.use(VueAxios, axios)
 Vue.use(Vuerouter)
 
 const routes = [
-  { path: '/', component: Home, meta: { requiresAuth: false } },
-  { path: '/Home', component: Home, meta: { requiresAuth: false } },
-  { path: '/Login', component: Login, meta: { requiresAuth: false } },
-  { path: '/Bag', component: Bag, meta: { requiresAuth: true } }
+  { path: '/', component: Home },
+  { path: '/Home', component: Home },
+  { path: '/Login', component: Login },
+  { path: '/Bag', component: Bag }
 ]
 
 const router = new Vuerouter({
