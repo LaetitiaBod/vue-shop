@@ -5,7 +5,6 @@ import vuetify from './plugins/vuetify'
 import Vuerouter from 'vue-router'
 import Home from './components/Home'
 import Login from './components/Login'
-import Bag from './components/Bag'
 
 import axios from 'axios'
 import VueAxios from 'vue-axios'
@@ -17,8 +16,7 @@ Vue.use(Vuerouter)
 const routes = [
   { path: '/', component: Home },
   { path: '/Home', component: Home },
-  { path: '/Login', component: Login },
-  { path: '/Bag', component: Bag }
+  { path: '/Login', component: Login }
 ]
 
 const router = new Vuerouter({
