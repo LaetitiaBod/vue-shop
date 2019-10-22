@@ -64,6 +64,7 @@ export default {
             this.alertmsg = ' has been successfully connected'
             alert(this.name + this.alertmsg)
             this.$session.start()
+            console.log(this.$session.id())
             this.$router.push('/Home')
           }
         }

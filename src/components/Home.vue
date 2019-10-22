@@ -25,7 +25,9 @@
                 <v-list-item-title v-model="name" label="name" id="name">{{item.name}}</v-list-item-title>
                 <v-list-item-subtitle v-model="price" label="price" id="price">{{item.price}}</v-list-item-subtitle>
                 <v-list-item-subtitle v-model="brand" label="brand" id="brand">{{item.brand}}</v-list-item-subtitle>
-                <v-btn @click="rmElement(index)">Remove</v-btn>
+                <v-btn @click="rmElement(index)">
+                  <v-icon>mdi-delete</v-icon>
+                </v-btn>
               </v-list-item-content>
             </v-list-item>
           </v-card>
@@ -182,6 +184,9 @@ export default {
           console.log('response', JSON.stringify(error.response))
         }
       }
+    },
+    async rmElement (index) {
+      this.todos.splice(index, 1)
     }
   }
 }

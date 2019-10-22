@@ -39,10 +39,15 @@ export default {
       this.$router.push('/Login').catch(err => { console.error('something went wrong', err) })
     },
     async logout () {
-      this.$session.destroy()
-      this.name = ''
-      alert('Successfully disconnected')
-      this.$router.push('/').catch(err => { console.error('something went wrong', err) })
+      if (this.$session.id() === undefined) {
+        alert('You are already disconnected')
+      } else {
+        console.log(this.$session.id())
+        this.$session.destroy()
+        this.name = ''
+        alert('Successfully disconnected')
+        this.$router.push('/').catch(err => { console.error('something went wrong', err) })
+      }
     }
   }
 }
