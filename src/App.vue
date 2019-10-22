@@ -12,6 +12,9 @@
       <v-btn text @click="gotologin">
         <span class="mr-2">Login</span>
       </v-btn>
+      <v-btn text @click="logout">
+        <span class="mr-2">Logout</span>
+      </v-btn>
     </v-app-bar>
 
     <v-content>
@@ -30,10 +33,16 @@ export default {
   }),
   methods: {
     async gotohome () {
-      this.$router.push('/Home').catch(err => { console.error('something went wrong', err) })
+      this.$router.push('/').catch(err => { console.error('something went wrong', err) })
     },
     async gotologin () {
       this.$router.push('/Login').catch(err => { console.error('something went wrong', err) })
+    },
+    async logout () {
+      this.$session.destroy()
+      this.name = ''
+      alert('Successfully disconnected')
+      this.$router.push('/').catch(err => { console.error('something went wrong', err) })
     }
   }
 }

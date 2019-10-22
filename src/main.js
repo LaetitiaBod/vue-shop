@@ -8,10 +8,12 @@ import Login from './components/Login'
 
 import axios from 'axios'
 import VueAxios from 'vue-axios'
+import VueSession from 'vue-session'
 
 Vue.config.productionTip = false
 Vue.use(VueAxios, axios)
 Vue.use(Vuerouter)
+Vue.use(VueSession)
 
 const routes = [
   { path: '/', component: Home },

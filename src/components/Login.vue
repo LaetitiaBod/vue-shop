@@ -43,22 +43,29 @@ export default {
         this.alertmsg = 'Password or name is empty'
         this.warning = true
       } else {
-        console.log('connexion request')
-        const log = await this.axios.post('http://localhost:4000/api/login', {
-          name: this.Name,
-          password: this.Password
-        })
-        console.log(log.data.status)
-        if (!log.data.status) {
-          console.log('wrong name or wrong password')
-          this.alertmsg = 'Password or name is wrong'
-          this.error = true
+        if (this.$session.id()) {
+          this.alertmsg = 'A user is already connected'
+          this.warning = true
         } else {
-          console.log('Successfully connected')
-          this.alertmsg = 'Successfully connected'
-          this.success = true
-          sessionStorage.setItem('name_session', this.Name)
-          this.$router.push('/Home')
+          console.log('connexion request')
+          const log = await this.axios.post('http://localhost:4000/api/login', {
+            name: this.Name,
+            password: this.Password
+          })
+          console.log(log.data.status)
+          if (!log.data.status) {
+            console.log('wrong name or wrong password')
+            this.alertmsg = 'Password or name is wrong'
+            this.error = true
+          } else {
+            console.log('Successfully connected')
+            this.$session.set('name', log.data.name)
+            this.name = this.$session.get('name')
+            this.alertmsg = ' has been successfully connected'
+            alert(this.name + this.alertmsg)
+            this.$session.start()
+            this.$router.push('/Home')
+          }
         }
       }
     },
