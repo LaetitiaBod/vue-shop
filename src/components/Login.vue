@@ -39,7 +39,7 @@ export default {
   methods: {
     async login () {
       if (this.Password === '' || this.Name === '') {
-        console.log('missing password or name')
+        // console.log('missing password or name')
         this.alertmsg = 'Password or name is empty'
         this.warning = true
       } else {
@@ -47,24 +47,24 @@ export default {
           this.alertmsg = 'A user is already connected'
           this.warning = true
         } else {
-          console.log('connexion request')
-          const log = await this.axios.post('http://localhost:4000/api/login', {
+          // console.log('connexion request')
+          const log = await this.axios.post('/api/login', {
             name: this.Name,
             password: this.Password
           })
-          console.log(log.data.status)
+          // console.log(log.data.status)
           if (!log.data.status) {
-            console.log('wrong name or wrong password')
+            // console.log('wrong name or wrong password')
             this.alertmsg = 'Password or name is wrong'
             this.error = true
           } else {
-            console.log('Successfully connected')
+            // console.log('Successfully connected')
             this.$session.set('name', log.data.name)
             this.name = this.$session.get('name')
             this.alertmsg = ' has been successfully connected'
             alert(this.name + this.alertmsg)
             this.$session.start()
-            console.log(this.$session.id())
+            // console.log(this.$session.id())
             this.$router.push('/Home')
           }
         }
@@ -72,22 +72,22 @@ export default {
     },
     async register () {
       if (this.Password === '' || this.Name === '') {
-        console.log('missing password or name')
+        // console.log('missing password or name')
         this.alertmsg = 'Password or name is empty'
         this.warning = true
       } else {
-        console.log('register request')
-        const reg = await this.axios.post('http://localhost:4000/api/register', {
+        // console.log('register request')
+        const reg = await this.axios.post('/api/register', {
           name: this.Name
         })
-        console.log(reg.data.status)
+        // console.log(reg.data.status)
         if (!reg.data.status) {
-          console.log('this name is already taken')
+          // console.log('this name is already taken')
           this.alertmsg = 'Name already taken'
           this.warning = true
         } else {
-          console.log('New user created')
-          this.axios.post('http://localhost:4000/api/registered', {
+          // console.log('New user created')
+          this.axios.post('/api/registered', {
             name: this.Name,
             password: this.Password
           })

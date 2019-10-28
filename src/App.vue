@@ -33,20 +33,20 @@ export default {
   }),
   methods: {
     async gotohome () {
-      this.$router.push('/').catch(err => { console.error('something went wrong', err) })
+      this.$router.push('/')
     },
     async gotologin () {
-      this.$router.push('/Login').catch(err => { console.error('something went wrong', err) })
+      this.$router.push('/Login')
     },
     async logout () {
       if (this.$session.id() === undefined) {
         alert('You are already disconnected')
       } else {
-        console.log(this.$session.id())
+        // console.log(this.$session.id())
         this.$session.destroy()
         this.name = ''
         alert('Successfully disconnected')
-        this.$router.push('/').catch(err => { console.error('something went wrong', err) })
+        this.$router.push('/')
       }
     }
   }

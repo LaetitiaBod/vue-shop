@@ -169,7 +169,7 @@ export default {
         alert('You need to be connected')
       } else {
         try {
-          const gotshoe = await this.axios.post('http://localhost:4000/api/shoe', {
+          const gotshoe = await this.axios.post('/api/shoe', {
             id: item.id
           })
           this.todos.push({
@@ -181,7 +181,7 @@ export default {
           })
         } catch (error) {
           this.error = error.response.data.message
-          console.log('response', JSON.stringify(error.response))
+          // console.log('response', JSON.stringify(error.response))
         }
       }
     },
